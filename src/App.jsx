@@ -5,7 +5,8 @@ import "./App.css";
 function App() {
   const [cardNumber, setCardNumber] = useState("0000 0000 0000 0000");
   const [cardHolderName, setCardHolderName] = useState("Jane Appleseed");
-  const [expiryDate, setExpiryDate] = useState("00/00");
+  const [expiryMonth, setExpiryMonth] = useState("00");
+  const [expiryYear, setExpiryYear] = useState("00");
   const [cvc, setCvc] = useState("000");
 
   return (
@@ -16,7 +17,9 @@ function App() {
             <span className="card-number">{cardNumber}</span>
             <div className="card-details">
               <span className="card-holder">{cardHolderName}</span>
-              <span className="card-expiration-date">{expiryDate}</span>
+              <span className="card-expiration-date">
+                {expiryMonth}/{expiryYear}
+              </span>
             </div>
           </div>
           <div className="card-back">
@@ -28,11 +31,13 @@ function App() {
         <CustomForm
           setCardNumber={setCardNumber}
           setCardHolderName={setCardHolderName}
-          setExpiryDate={setExpiryDate}
+          setExpiryMonth={setExpiryMonth}
+          setExpiryYear={setExpiryYear}
           setCvc={setCvc}
           cardNumber={cardNumber}
           cardHolderName={cardHolderName}
-          expiryDate={expiryDate}
+          expiryMonth={expiryMonth}
+          expiryYear={expiryYear}
           cvc={cvc}
         />
       </div>

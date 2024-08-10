@@ -6,19 +6,22 @@ const CustomForm = ({
   cardNumber,
   setCardHolderName,
   cardholderName,
-  setExpiryDate,
-  expiryDate,
+  setExpiryMonth,
+  expiryMonth,
+  setExpiryYear,
+  expiryYear,
   setCvc,
   cvc,
 }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Basic validation (this can be expanded)
-    if (cardholderName && cardNumber && expiryDate && cvc) {
+    if (cardholderName && cardNumber && expiryMonth && expiryYear && cvc) {
       console.log("Form submitted", {
         cardholderName,
         cardNumber,
-        expiryDate,
+        expiryMonth,
+        expiryYear,
         cvc,
       });
     } else {
@@ -64,35 +67,49 @@ const CustomForm = ({
         />
       </div>
 
-      <div className="form__field">
-        <label htmlFor="expiryDate">Exp. Date (MM/YY)</label>
-        <input
-          type="text"
-          id="expiryDate"
-          placeholder="MM/YY"
-          value={expiryDate}
-          onChange={(e) => setExpiryDate(e.target.value)}
-          maxLength="5"
-          required
-          aria-label="Expiration Date"
-        />
+      <div className="row">
+        <div className="form__field">
+          <label htmlFor="expiryDate">Exp. Date (MM/YY)</label>
+          <div className="expiry">
+            <input
+              type="text"
+              id="expiryMonth"
+              placeholder="MM"
+              value={expiryMonth}
+              onChange={(e) => setExpiryMonth(e.target.value)}
+              maxLength="2"
+              required
+              aria-label="Expiration Month"
+            />
+            <input
+              type="text"
+              id="expiryYear"
+              placeholder="YY"
+              value={expiryYear}
+              onChange={(e) => setExpiryYear(e.target.value)}
+              maxLength="2"
+              required
+              aria-label="Expiration Year"
+            />
+          </div>
+        </div>
+
+        <div className="form__field">
+          <label htmlFor="cvc">CVC</label>
+          <input
+            type="text"
+            id="cvc"
+            placeholder="e.g. 123"
+            value={cvc}
+            onChange={(e) => setCvc(e.target.value)}
+            maxLength="3"
+            required
+            aria-label="CVC"
+          />
+        </div>
       </div>
 
-      <div className="form__field">
-        <label htmlFor="cvc">CVC</label>
-        <input
-          type="text"
-          id="cvc"
-          placeholder="e.g. 123"
-          value={cvc}
-          onChange={(e) => setCvc(e.target.value)}
-          maxLength="3"
-          required
-          aria-label="CVC"
-        />
-      </div>
-
-      <button type="submit">Confirm</button>
+      <button className="confirm-btn" type="submit">Confirm</button>
     </form>
   );
 };
